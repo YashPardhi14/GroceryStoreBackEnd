@@ -3,6 +3,7 @@ package com.app.model;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,6 +18,7 @@ public class GroceryInfo {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="ITEM_ID")
 	private Integer item_id;
 	
 	
@@ -36,8 +38,7 @@ public class GroceryInfo {
 	@Column(name = "COST_PER_ITEM")
 	private Double costPerItem;
 	
-	@Column(name="grocery_source_id")
-	private Integer sourceID;
+	
 	
 	
 	public Integer getItem_id() {
@@ -50,22 +51,15 @@ public class GroceryInfo {
 	}
 
 
-	public Integer getSourceID() {
-		return sourceID;
-	}
 
 
-	public void setSourceID(Integer sourceID) {
-		this.sourceID = sourceID;
-	}
 
-
-	@OneToOne(mappedBy = "groceryInfo",cascade = CascadeType.ALL)
-	@JoinColumn(name="item_id",referencedColumnName = "id")
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "GROCERY_ID")
 	private GroceryAmounts groceryAmounts;
 
-	@ManyToOne
-	    @JoinColumn(name = "grocery_source_id",referencedColumnName = "")
+	      @ManyToOne
+	    @JoinColumn(name = "SOURCE_ID")
 	    private GrocerySource grocerySource;
 
 
@@ -103,11 +97,11 @@ public class GroceryInfo {
 	@Override
 	public String toString() {
 		return "GroceryInfo [item_id=" + item_id + ", groceryName=" + groceryName + ", costPerItem=" + costPerItem
-				+ ", sourceID=" + sourceID + ", groceryAmounts=" + groceryAmounts + ", grocerySource=" + grocerySource
-				+ "]";
+				+ ", groceryAmounts=" + groceryAmounts + ", grocerySource=" + grocerySource + "]";
 	}
-	
-	
+
+
+
 	
 	
 	

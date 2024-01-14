@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 //import jakarta.persistence.JoinColumn;
 //import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -14,9 +16,11 @@ import jakarta.persistence.Table;
 @Table(name="GROCERY_AMOUNTS")
 public class GroceryAmounts {
 
-	   @Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	     @Column(name="GROCERY_ID")
 	     private Integer id;
+	   
 
 	    @Column(name = "ITEMS_AVAILABLE")
 	    private int itemsAvailable;
@@ -25,7 +29,7 @@ public class GroceryAmounts {
 	    private Double totalCostOfItems;
 
 //	    @OneToOne
-//	    @JoinColumn(name = "grocery_info_id")
+//	    @JoinColumn(name = "GROCERY_ID")
 //	    private GroceryInfo groceryInfo;
 
 		public Integer getId() {

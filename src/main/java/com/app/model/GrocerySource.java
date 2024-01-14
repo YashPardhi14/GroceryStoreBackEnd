@@ -1,4 +1,5 @@
 package com.app.model;
+import jakarta.persistence.Column;
 //
 //import java.util.List;
 //
@@ -6,21 +7,24 @@ package com.app.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 //import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 
-@Data
+
 @Entity
 @Table(name = "GROCERY_SOURCE")
 public class GrocerySource {
 
 	
-	
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer state_id;
+	@Column(name="SOURCE_ID")
+	private Integer source_id;
 
+	@Column(name="STATE_NAME")
 	private String stateName;
 
 //	@OneToMany(mappedBy = "grocerySource", cascade = CascadeType.ALL)
@@ -34,16 +38,18 @@ public class GrocerySource {
 //		this.groceryInfos = groceryInfos;
 //	}
 
-	public Integer getId() {
-		return state_id;
-	}
 
-	public void setId(Integer id) {
-		this.state_id = id;
-	}
 
 	public String getStateName() {
 		return stateName;
+	}
+
+	public Integer getSource_id() {
+		return source_id;
+	}
+
+	public void setSource_id(Integer source_id) {
+		this.source_id = source_id;
 	}
 
 	public void setStateName(String stateName) {
@@ -52,7 +58,9 @@ public class GrocerySource {
 
 	@Override
 	public String toString() {
-		return "GroceryInfo [id=" + state_id + ", stateName=" + stateName + "]";
+		return "GrocerySource [source_id=" + source_id + ", stateName=" + stateName + "]";
 	}
+
+	
 
 }
