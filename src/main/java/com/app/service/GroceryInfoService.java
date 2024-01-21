@@ -154,5 +154,29 @@ public class GroceryInfoService {
 }
 	 
 	 
+	 public Boolean deleteGroceryById(int id) {
+		 try {
+		        // Check if the grocery exists before deleting
+		        Optional<GroceryInfo> groceryToDelete = groceryInfoRepository.findById(id);
+
+		        if (groceryToDelete.isPresent()) {
+		            // Delete the grocery using the repository
+		            groceryInfoRepository.delete(groceryToDelete.get());
+		            return true;
+		        } else {
+		            // Handle the case where the grocery was not found
+		            System.out.println("Grocery with ID " + id + " not found");  // Replace with logging
+		            
+		            return false;
+		        }
+		    } catch (Exception error) {
+		        // Handle any errors that may occur during deletion
+		        System.out.println("Error deleting grocery: " + error.getMessage());  // Replace with logging
+		        throw new RuntimeException("Failed to delete grocery", error);  // Rethrow for further handling
+		    }
+		 
+	 }
+	 
+	 
 }
 	 
